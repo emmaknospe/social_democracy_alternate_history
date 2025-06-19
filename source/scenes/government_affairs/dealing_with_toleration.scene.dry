@@ -3,7 +3,7 @@ new-page: true
 is-card: true
 card-image: img/portraits/BrüningHeinrich.jpg
 view-if: dealing_with_toleration_timer = 0 and spd_toleration and chancellor_party == "Z"
-on-arrival: dealing_with_toleration_timer += 6; month_actions += 1
+on-arrival: dealing_with_toleration_timer += 6; quarter_actions += 1
 tags: govt_affairs
 #subtitle: Despite not being in government, we can still provide support.
 
@@ -75,7 +75,7 @@ Our negotiations have succeeded, and the Center Party and DVP have agreed to for
 
 We are now part of a "constitutional coalition" government that includes all parties except the extremists of the KPD, DNVP, and NSDAP. [+ chancellor +] will remain as chancellor. Leftists in our party are skeptical of this arrangement.
 
-- @election_1928.ministries: Now, we must select our ministries.
+- @senate_election_36bby.ministries: Now, we must select our ministries.
 
 
 

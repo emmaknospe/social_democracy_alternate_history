@@ -1,13 +1,5 @@
 
-(1..1) January
-(2..2) February
-(3..3) March
-(4..4) April
-(5..5) May
-(6..6) June
-(7..7) July
-(8..8) August
-(9..9) September
-(10..10) October
-(11..11) November
-(12..12) December
+(0..0) 000
+(1..1) 250
+(2..2) 500
+(3..3) 750

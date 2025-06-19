@@ -1,70 +1,78 @@
-title: Campaigning
+title: Outreach Efforts
 new-page: true
-on-arrival: month_actions += 1
+on-arrival: quarter_actions += 1
 max-visits: 36
 is-card: true
 card-image: img/flags.jpg
 frequency: 100
 tags: party_affairs
 
-= Campaigning
+= Outreach Efforts
 
-Whether or not we are in an electoral campaign, the party is always trying to broaden its voter base. Who should we focus our campaign efforts on?
+Whether or not we are in an electoral campaign, the Yellows are always trying to broaden our support base across the galaxy. Which demographic should we focus our outreach efforts on?
 
-- @workers: The urban working class, our traditional support base.
-- @new_middle: The "new middle class" of government employees and white-collar workers.
-- @old_middle: The "old middle class" of small independent businessmen and artisans.
-- @rural: Rural workers and small farmers, who have felt neglected by us in the past.
-- @unemployed: The unemployed.
-- @catholics: Catholics, who typically support the Center Party.
-- @root: We either don't want to or cannot campaign right now.
+- @industrial_laborers: Industrial laborers on manufacturing worlds like Corellia and Kuat.
+- @traditionalists: Traditionalist alien communities concerned about cultural oppression.
+- @rim_pioneers: Rim world pioneers and settlers who value independence.
+- @displaced_populations: Populations displaced by galactic conflicts.
+- @merchants: Trade guilds and commercial interests.
+- @bureaucrats: Republic civil servants and administrators.
+- @core_elites: Core World elites with significant political influence.
+- @root: We either don't want to or cannot conduct outreach right now.
 - @easy_discard
 
-@workers
+@industrial_laborers
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: workers_spd += 6*(1-dissent); workers_spd -= 2 if unemployed >= 15; workers_spd -= 2 if unemployed >= 25; workers_spd += 6*(1-dissent) if wtb_adopted = 1; resources -= 1; workers_spd += 3*(1-dissent) if nationalization_progress >= 1;
+on-arrival: industrial_laborers_yellows += 6*(1-dissent); industrial_laborers_yellows -= 2 if unemployed >= 15; industrial_laborers_yellows -= 2 if unemployed >= 25; resources -= 1; industrial_laborers_yellows += 3*(1-dissent) if economic_plan >= 1;
 
-We have increased our campaigning among the workers. [? if unemployed >= 15: The high levels of unemployment make our campaign more difficult. ?][? if wtb_adopted = 1 : Adopting the WTB plan gives us a new rallying point around which to attract workers. ?]
+We have increased our outreach among industrial laborers on the manufacturing worlds. [? if unemployed >= 15: Economic instability makes our message harder to spread among worried workers. ?][? if economic_plan >= 1: Our economic policies give us credibility with workers seeking stability. ?]
 
-@new_middle
+@traditionalists
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: new_middle_spd += 6*(1-dissent); new_middle_spd -= 4 if socialism <= 49 and peoples_party == 0; resources -= 1; peoples_party_support += 1;
+on-arrival: traditionalists_yellows += 6*(1-dissent); traditionalists_yellows -= 4 if separatism >= 15; resources -= 1; traditionalists_yellows += 3*(1-dissent) if alien_rights >= 1;
 
-We have increased our campaigning among the new middle class. [? if socialism <= 49 and peoples_party == 0: The popular antipathy towards socialism among this group makes our campaign more difficult. ?] [? if peoples_party > 0: As a people's party, we have an easier time increasing support among the middle class than before. ?]
+We have increased our outreach among traditionalist alien communities. [? if separatism >= 15: Rising separatist sentiment makes some aliens wary of any Republic-supporting party. ?][? if alien_rights >= 1: Our advocacy for alien rights strengthens our appeal among these communities. ?]
 
-@old_middle
+@rim_pioneers
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: old_middle_spd += 5*(1-dissent); resources -= 1; old_middle_spd -= 3 if nationalism >= 51 and peoples_party == 0; peoples_party_support += 1
+on-arrival: rim_pioneers_yellows += 5*(1-dissent); resources -= 1; rim_pioneers_yellows -= 3 if centralization >= 51; rim_pioneers_yellows += 3*(1-dissent) if decentralization >= 1;
 
-We have increased our campaigning among the old middle class. [? if nationalism >= 51 and peoples_party == 0: The high levels of nationalism among this group make our campaign more difficult. ?] [? if peoples_party > 0: As a people's party, we have an easier time increasing support among the middle class than before. ?]
+We have increased our outreach among Rim world pioneers and settlers. [? if centralization >= 51: Our support for centralized policies conflicts with Rim world independence values. ?][? if decentralization >= 1: Our support for local autonomy resonates with frontier communities. ?]
 
-@rural
+@displaced_populations
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: rural_spd += 5*(1-dissent); rural_spd -= 3*(1-dissent) if peoples_party == 0; resources -= 1; peoples_party_support += 1; rural_spd += 3*(1-dissent) if rural_policy >= 2
+on-arrival: displaced_populations_yellows += 5*(1-dissent); resources -= 1; displaced_populations_yellows += 4*(1-dissent) if jedi_influence >= 1; displaced_populations_yellows += 3*(1-dissent) if welfare >= 2;
 
-We have increased our campaigning among farmers. [? if peoples_party == 0: We have not historically campaigned much among the farmers, and they do not trust us. ?][? if peoples_party > 0: As a people's party, we have an easier time increasing support among farmers than before. ?][? if rural_policy >= 2 : Our rural policies have made it easier for us to build support among farmers. ?]
+We have increased our outreach among populations displaced by galactic conflicts. [? if jedi_influence >= 1: Our connection to the Jedi Order provides hope to those seeking protection and justice. ?][? if welfare >= 2: Our social welfare policies directly address the needs of displaced communities. ?]
 
-@unemployed
+@merchants
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-on-arrival: unemployed_spd += 6*(1-dissent); resources -= 1; unemployed_spd -= 3 if welfare < 0; unemployed_spd += 6*(1-dissent) if wtb_adopted = 1; unemployed_spd += 3*(1-dissent) if welfare >= 2;
+on-arrival: merchants_yellows += 4*(1-dissent); resources -= 1; merchants_yellows -= 3 if anti_corporate >= 2; merchants_yellows += 3*(1-dissent) if trade_policy >= 1;
 
-We have increased our campaigning among the unemployed. [? if welfare < 0: The welfare cuts and resultant poverty make our campaign more difficult, since we are associated with the government that enacted these cuts, and our campaign may even backfire. ?][? if wtb_adopted = 1 : Adopting the WTB plan gives us a new rallying point around which to attract support from the unemployed. ?]
+We have increased our outreach among trade guilds and merchant interests. [? if anti_corporate >= 2: Our strong anti-corporate stance makes many merchants wary of our policies. ?][? if trade_policy >= 1: Our fair trade policies appeal to independent merchants competing against mega-corporations. ?]
 
-@catholics
+@bureaucrats
 subtitle: -1 resources
 choose-if: resources >= 1
 unavailable-subtitle: Not enough resources.
-view-if: peoples_party == 1
-on-arrival: catholics_spd += 6*(1-dissent); resources -= 1
+on-arrival: bureaucrats_yellows += 4*(1-dissent); resources -= 1; bureaucrats_yellows += 3*(1-dissent) if corruption_fighting >= 1; bureaucrats_yellows -= 2 if government_efficiency < 0;
 
-We have increased our campaigning among Catholics.
+We have increased our outreach among Republic civil servants. [? if corruption_fighting >= 1: Our anti-corruption efforts appeal to honest bureaucrats seeking reform. ?][? if government_efficiency < 0: Government dysfunction makes civil servants skeptical of any ruling party. ?]
+
+@core_elites
+subtitle: -2 resources
+choose-if: resources >= 2
+unavailable-subtitle: Not enough resources.
+on-arrival: core_elites_yellows += 3*(1-dissent); resources -= 2; core_elites_yellows -= 4 if anti_corporate >= 2; core_elites_yellows += 2*(1-dissent) if jedi_influence >= 2;
+
+We have increased our outreach among Core World elites - an expensive but potentially influential endeavor. [? if anti_corporate >= 2: Our anti-corporate stance alienates many wealthy Core Worlders with business interests. ?][? if jedi_influence >= 2: Our strong Jedi connections provide credibility among traditional Republic families. ?]

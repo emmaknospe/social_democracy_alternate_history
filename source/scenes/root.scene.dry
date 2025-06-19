@@ -6,7 +6,7 @@ go-to: post_event if started = 1; start_menu if started = 0
 new-page: true
 go-to: start_menu_2
 
-= Social Democracy: An Alternate History
+= Phantom Menace: An Alternate History
 
 @start_menu_2
 
@@ -19,12 +19,14 @@ go-to: start_menu_2
 @start
 on-arrival: {!
 Q.started = 1;
-// time elapsed (in months)
+// time elapsed (in quarters)
 Q.time = 1;
-Q.year = 1928;
-Q.month = 1;
-// how many actions have been taken this month?
-Q.month_actions = 0;
+Q.year_bby = 37; // 37 BBY = 7940 C.R.C.
+Q.quarter = 0; // 0 = 000, 1 = 250, 2 = 500, 3 = 750
+// conversion: display year = 7977 - BBY
+Q.year_display = 7940; // 7977 - 37 = 7940 C.R.C.
+// how many actions have been taken this quarter?
+Q.quarter_actions = 0;
 
 // 0 = normal difficulty, 1 = hard mode, 2 = hard mode no saves
 Q.difficulty = 0;
@@ -74,48 +76,49 @@ Q.crisis_urgency = 0;
 Q.nazi_urgency = 0;
 // radicalization indicates how radical the SPD's rhetoric is - scale from 0 to 10.
 Q.radicalization = 0;
-// Support for the WTB plan and proto-Keynesian works creation plans in general
-Q.wtb_support = 0;
-// Support for Pacifism within the SPD relative to 1928
+// Support for Pacifism within the Yellows - Jedi philosophy of peaceful resolution
 Q.pacifism = 0;
-// Support for democratic reform within the SPD relative to 1928
+// Support for democratic reform within the Yellows relative to start
 Q.democratization = 0;
-// Support for a communist coalition relative to 1928
-Q.communist_coalition = 0;
-// economic_plan: have we adopted *any* economic plan?
-// 1 - WTB plan, 2 - AfA-bund plan, 3 - radical plan (mass nationalization of industries)
-Q.economic_plan = 0;
-// have we officially adopted the WTB plan?
-Q.wtb_adopted = 0;
-// have we formed the iron front?
+// Support for decentralization - giving more autonomy to Rim worlds and local systems
+Q.decentralization = 0;
+// Anti-corporate stance - opposition to mega-corporation influence in politics
+Q.anti_corporate = 0;
+// Alien rights advocacy - protection and inclusion of non-human species
+Q.alien_rights = 0;
+// Jedi influence in party policy - how much we align with Jedi Council positions
+Q.jedi_influence = 0;
+// Xenophobia urgency - how seriously we take the threat of human-supremacist movements
+Q.xenophobia_urgency = 0;
+// have we formed the iron front? (may be repurposed for Star Wars equivalent)
 Q.iron_front_formed = 0;
-// people's party support
-Q.peoples_party_support = 0;
-// support for nationalizations
-Q.nationalization_support = 0;
-Q.nationalization_adopted = 0;
-// moderate economic plan
-Q.moderate_plan_support = 0;
-Q.moderate_plan_adopted = 0;
+// corruption fighting efforts - anti-corruption initiatives and transparency measures
+Q.corruption_fighting = 0;
+// government efficiency - how well Republic institutions are functioning
+Q.government_efficiency = 0;
+// trade policy - fair trade initiatives supporting independent merchants
+Q.trade_policy = 0;
+// centralization - support for stronger central Republic authority
+Q.centralization = 0;
 
 // organizations
 
 // inter-party relations
-Q.z_relation = 50;
-Q.kpd_relation = 25;
-Q.ddp_relation = 60;
-Q.dvp_relation = 35;
-// DNVP and NSDAP are invariably hostile
-Q.DNVP_relation = 10;
-Q.NSDAP_relation = 0;
+Q.nobles_relation = 65; // coalition partner
+Q.core_coalition_relation = 60; // coalition partner
+Q.rights_liberties_relation = 30; // main opposition
+Q.militarists_relation = 40;
+Q.compor_relation = 10; // hostile xenophobic faction
+Q.corporates_relation = 25;
 
-Q.kpd_leader = "Thälmann";
-// alternative is the Conciliators as party leader
-Q.kpd_party_leader = "Thälmann";
-Q.z_leader = "Brüning";
-// party leader - can be Ludwig Kaas, Joseph Joos, or Adam Stegerwald after the 1928 December conference. Joos will be most friendly to the SPD.
-Q.z_party_leader = "Marx";
-Q.nsdap_leader = "Hitler";
+Q.nobles_leader = "Valorum";
+Q.nobles_party_leader = "Valorum";
+Q.core_coalition_leader = "Tarkin";
+Q.core_coalition_party_leader = "Tarkin";
+Q.rights_liberties_leader = "Antilles";
+Q.rights_liberties_party_leader = "Antilles";
+Q.militarists_leader = "Kota";
+Q.compor_leader = "Teem";
 
 // hmm... maybe we can play nice with Hindenburg???
 Q.hindenburg_relation = 25;
@@ -192,16 +195,21 @@ Q.capital_strike_progress = 0;
 
 Q.budget = 4;
 
-// Proportion of different social groups
-// source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 45, table 3.4 - using 1925 figures
-Q.workers = 48; // industry and trade
-Q.old_middle = 13; // "old mittelstand"
-// 16.4 trade & commerce, 6.6 public and private services, 4.4 domestic help
-Q.new_middle = 14; // "new mittelstand"
-Q.rural = 25; // agriculture and forestry employment... but many of those are proletarians so...
-// source: https://surface.syr.edu/cgi/viewcontent.cgi?filename=3&article=1016&context=books&type=additional page 43, table 3.3
-Q.unemployed = 8.6;
-Q.catholics = 30;
+// Proportion of different social groups in the Republic
+// Core World Elites: wealthy, influential populations from Core Worlds
+// Rim Pioneers: settlers, expansionists, and aliens from Outer Rim
+// Industrial Laborers: workers from manufacturing centers like Corellia, Kuat
+// Traditionalists: alien groups sensitive to human cultural oppression
+// Displaced Populations: individuals displaced by galactic conflicts (will grow during crisis)
+// Merchants: trade guilds and commercial interests
+// Bureaucrats: Republic civil servants and administrators
+Q.core_elites = 12; // Core World Elites
+Q.rim_pioneers = 25; // Rim Pioneers
+Q.industrial_laborers = 28; // Industrial Laborers
+Q.traditionalists = 15; // Traditionalists
+Q.merchants = 16; // Merchants
+Q.bureaucrats = 14; // Bureaucrats
+Q.displaced_populations = 2; // Displaced Populations (will grow with crisis)
 
 // unemployment: 1929 - 13.3, 1930 - 22.7, 1931 - 34.3, 1932 - 43.8 (same source as above)
 
@@ -225,93 +233,116 @@ Q.unemployed_qol = 100;
 Q.old_middle_qol = 100;
 Q.new_middle_qol = 100;
 
-Q.classes = ['workers', 'old_middle', 'new_middle', 'rural', 'unemployed', 'catholics'];
-Q.parties = ['spd', 'kpd', 'z', 'ddp', 'dvp', 'dnvp', 'nsdap', 'other'];
+Q.classes = ['core_elites', 'rim_pioneers', 'industrial_laborers', 'traditionalists', 'displaced_populations', 'merchants', 'bureaucrats'];
+Q.parties = ['yellows', 'nobles', 'core_coalition', 'rights_liberties', 'militarists', 'compor', 'corporates', 'other'];
 
 // TODO: add 'sapd' later on
 Q.sapd_formed = 0;
 
 // Support for party by social group
 // they don't have to sum to 100 since the electoral calculations will be normalized.
-Q.workers_spd = 60;
-Q.workers_kpd = 20;
-Q.workers_z = 5;
-Q.workers_ddp = 0;
-Q.workers_dvp = 0;
-Q.workers_dnvp = 5;
-Q.workers_nsdap = 0;
-Q.workers_other = 10;
 
-Q.old_middle_spd = 5;
-Q.old_middle_kpd = 0;
-Q.old_middle_z = 5;
-Q.old_middle_ddp= 10;
-Q.old_middle_dvp = 25;
-Q.old_middle_dnvp = 25;
-Q.old_middle_nsdap = 10;
-Q.old_middle_other = 10;
+// Core World Elites - wealthy, influential Core Worlders
+Q.core_elites_yellows = 5;
+Q.core_elites_nobles = 45;
+Q.core_elites_core_coalition = 35;
+Q.core_elites_rights_liberties = 2;
+Q.core_elites_militarists = 8;
+Q.core_elites_compor = 0;
+Q.core_elites_corporates = 15;
+Q.core_elites_other = 5;
 
-Q.new_middle_spd = 5;
-Q.new_middle_kpd = 1;
-Q.new_middle_z = 10;
-Q.new_middle_ddp= 25;
-Q.new_middle_dvp = 25;
-Q.new_middle_dnvp = 10;
-Q.new_middle_nsdap = 5;
-Q.new_middle_other = 15;
+// Rim Pioneers - settlers, expansionists, Rim aliens
+Q.rim_pioneers_yellows = 20;
+Q.rim_pioneers_nobles = 5;
+Q.rim_pioneers_core_coalition = 10;
+Q.rim_pioneers_rights_liberties = 45;
+Q.rim_pioneers_militarists = 5;
+Q.rim_pioneers_compor = 5;
+Q.rim_pioneers_corporates = 5;
+Q.rim_pioneers_other = 5;
 
-Q.rural_spd = 10;
-Q.rural_kpd = 0;
-Q.rural_z = 5;
-Q.rural_ddp= 5;
-Q.rural_dvp = 15;
-Q.rural_dnvp = 45;
-Q.rural_nsdap = 5;
-Q.rural_other = 10;
+// Industrial Laborers - manufacturing workers (more sympathetic to militarists for contracts)
+Q.industrial_laborers_yellows = 15;
+Q.industrial_laborers_nobles = 8;
+Q.industrial_laborers_core_coalition = 25;
+Q.industrial_laborers_rights_liberties = 25;
+Q.industrial_laborers_militarists = 20;
+Q.industrial_laborers_compor = 2;
+Q.industrial_laborers_corporates = 3;
+Q.industrial_laborers_other = 2;
 
-Q.unemployed_spd = 25;
-Q.unemployed_kpd = 55;
-Q.unemployed_z = 1;
-Q.unemployed_ddp = 0;
-Q.unemployed_dvp = 0;
-Q.unemployed_dnvp = 5;
-Q.unemployed_nsdap = 15;
-Q.unemployed_other = 9;
+// Traditionalists - aliens sensitive to human oppression
+Q.traditionalists_yellows = 25;
+Q.traditionalists_nobles = 10;
+Q.traditionalists_core_coalition = 15;
+Q.traditionalists_rights_liberties = 35;
+Q.traditionalists_militarists = 5;
+Q.traditionalists_compor = 0;
+Q.traditionalists_corporates = 5;
+Q.traditionalists_other = 5;
 
-Q.catholics_spd = 15;
-Q.catholics_kpd = 2;
-Q.catholics_z = 50;
-Q.catholics_ddp = 0;
-Q.catholics_dvp = 5;
-Q.catholics_dnvp = 5;
-Q.catholics_nsdap = 0;
-Q.catholics_other = 12;
+// Displaced Populations - conflict refugees (favor security-focused parties)
+Q.displaced_populations_yellows = 15;
+Q.displaced_populations_nobles = 5;
+Q.displaced_populations_core_coalition = 10;
+Q.displaced_populations_rights_liberties = 20;
+Q.displaced_populations_militarists = 30;
+Q.displaced_populations_compor = 15;
+Q.displaced_populations_corporates = 0;
+Q.displaced_populations_other = 5;
+
+// Merchants - trade guilds and commercial interests
+Q.merchants_yellows = 8;
+Q.merchants_nobles = 15;
+Q.merchants_core_coalition = 20;
+Q.merchants_rights_liberties = 25;
+Q.merchants_militarists = 5;
+Q.merchants_compor = 2;
+Q.merchants_corporates = 20;
+Q.merchants_other = 5;
+
+// Bureaucrats - Republic civil servants
+Q.bureaucrats_yellows = 12;
+Q.bureaucrats_nobles = 25;
+Q.bureaucrats_core_coalition = 40;
+Q.bureaucrats_rights_liberties = 15;
+Q.bureaucrats_militarists = 15;
+Q.bureaucrats_compor = 8;
+Q.bureaucrats_corporates = 5;
+Q.bureaucrats_other = 5;
 
 
-// Current Reichstag composition
-// % of Reichstag in Jan 1928
-// source: wikipedia
-// note: the Z figures also include the BVP (Bavarian people's party)
-// since they were ideologically similar, but they were separate parties.
-// They did not have a CDU/CSU-style relationship.
-Q.spd_r = 26;
-Q.kpd_r = 9;
-Q.z_r = 17;
-Q.ddp_r = 6;
-Q.dvp_r = 10;
-Q.dnvp_r = 20;
-Q.nsdap_r = 3;
-Q.other_r = 9;
+// Current Senate composition
+// % of Senate at game start (37 BBY)
+// Ruling Coalition: 51% (narrow majority)
+// Yellows (player party): 12% - pro-Jedi, anti-corporate, junior coalition partner
+// Nobles: 18% - traditional Coruscant nobility, includes Chancellor Valorum
+// Core Coalition: 21% - pro-centralization, pro-taxation, senior coalition partner
+// Opposition: 49%
+// Rights and Liberties: 25% - Rim worlds, pro-decentralization, anti-corporate, main opposition
+// Militarists: 12% - pro-centralization, wants Republic Military
+// COMPOR: 3% - human-nationalist, xenophobic
+// Corporates: 9% - corporate coalition, neutral on centralization
+// Others: 4% - independents
+Q.yellows_r = 12;
+Q.nobles_r = 18;
+Q.core_coalition_r = 21;
+Q.rights_liberties_r = 25;
+Q.militarists_r = 12;
+Q.compor_r = 3;
+Q.corporates_r = 9;
+Q.other_r = 4;
 
 // diff from prev
-Q.old_spd_r = 26;
-Q.old_kpd_r = 9;
-Q.old_z_r = 17;
-Q.old_ddp_r = 6;
-Q.old_dvp_r = 10;
-Q.old_dnvp_r = 20;
-Q.old_nsdap_r = 3;
-Q.old_other_r = 9;
+Q.old_yellows_r = 12;
+Q.old_nobles_r = 18;
+Q.old_core_coalition_r = 21;
+Q.old_rights_liberties_r = 25;
+Q.old_militarists_r = 12;
+Q.old_compor_r = 3;
+Q.old_corporates_r = 9;
+Q.old_other_r = 4;
 
 // sapd isn't formed yet, but it may be formed
 Q.sapd_r = 0;
@@ -328,44 +359,48 @@ Q.party_support_records = [];
 Q.economic_records = [];
 
 
-// State of the government
-Q.president = "Hindenburg";
-// starting chancellor: Wilhelm Marx
-Q.chancellor = "Marx";
-Q.chancellor_party = 'Z';
-Q.spd_in_government = 0;
-Q.z_in_government = 1;
-Q.ddp_in_government = 0;
-Q.dvp_in_government = 1;
-Q.dnvp_in_government = 1;
-Q.kpd_in_government = 0;
-Q.nsdap_in_government = 0;
+// starting chancellor: Finis Valorum
+Q.chancellor = "Valorum";
+Q.chancellor_party = 'nobles';
+Q.yellows_in_government = 1;
+Q.nobles_in_government = 1;
+Q.core_coalition_in_government = 1;
+Q.rights_liberties_in_government = 0;
+Q.militarists_in_government = 0;
+Q.compor_in_government = 0;
+Q.corporates_in_government = 0;
 
-Q.in_right_coalition = 0;
-// Weimar coalition = SPD + Z + DDP
-Q.in_weimar_coalition = 0;
-// Grand coalition = SPD + Z + BVP + DDP + DVP
-// also includes the "new grand coalition" of SPD + Z + BVP + DDP + DVP + Others
-Q.in_grand_coalition = 0;
-// Popular front = SPD + KPD + Z + DDP
-Q.in_popular_front = 0;
-// left coalition = SPD + KPD + left-splinters
-Q.in_left_front = 0;
-// emergency government containing the SPD: only president Braun can do this.
+// Coalition Types
+// Reform Coalition = Yellows + Nobles + Core Coalition (current government)
+Q.in_reform_coalition = 1;
+// Rim Alliance = Yellows + Rights and Liberties (formable government)
+Q.in_rim_alliance = 0;
+// Defense Coalition = Core Coalition + Yellows + Militarists (potential government)
+Q.in_defense_coalition = 0;
+// Loyalists = Core Coalition + Nobles + Yellows + Militarists (unlocked if separatism high)
+Q.in_loyalist_coalition = 0;
+// Rim Guardians = Yellows + Rights and Liberties + Militarists
+Q.in_rim_guardians = 0;
+// emergency government containing the Yellows
 Q.in_emergency_government = 0;
-Q.in_spd_majority = 0;
-Q.grand_coalition_failed = 0;
-// if the SPD is ruling as part of a minority government
+Q.in_yellows_majority = 0;
+Q.reform_coalition_failed = 0;
+// if the Yellows are ruling as part of a minority government
 Q.in_minority_government = 0;
+// separatism level - unlocks Loyalist coalition when high enough
+Q.separatism = 0;
 // national unity governmet
 
-// if you're in a coalition, this is an incremental counter for how many times dissent has happened from the right.
+// if you're in a coalition, this is an incremental counter for how many times dissent has happened.
 Q.coalition_dissent = 0;
-// dissent from the KPD, in a popular front or left front government
-Q.kpd_coalition_dissent = 0;
+// dissent from coalition partners based on ideological differences
+Q.nobles_coalition_dissent = 0;
+Q.core_coalition_dissent = 0;
+Q.rights_liberties_coalition_dissent = 0;
+Q.militarists_coalition_dissent = 0;
 
-// does the SPD tolerate the government even if it is not a participant?
-Q.spd_toleration = 0;
+// does the Yellows tolerate the government even if it is not a participant?
+Q.yellows_toleration = 0;
 
 // is the current government a presidential minority government?
 Q.minority_government = 0;
@@ -409,9 +444,18 @@ Q.welfare = 0;
 // level of support for farmers
 Q.agricultural_policy = 0;
 Q.land_reform = 0;
-// works-creation programs (i.e. WTB-plan) - how much have they implemented?
-Q.works_program = 0;
-Q.wtb_implemented = 0;
+
+// Star Wars Political Variables (scale 0-10 unless noted)
+// pacifism: Jedi philosophy influence - peaceful conflict resolution vs military solutions
+// decentralization: Rim world autonomy vs central Republic control
+// anti_corporate: Opposition to mega-corporation political influence
+// alien_rights: Protection and inclusion of non-human species in Republic
+// jedi_influence: Alignment with Jedi Council positions and Force-based governance
+// xenophobia_urgency: Threat assessment of human-supremacist movements (0-10)
+// corruption_fighting: Anti-corruption initiatives and government transparency
+// government_efficiency: Republic institutional effectiveness (-5 to +5)
+// trade_policy: Fair trade supporting independent merchants vs corporate dominance
+// centralization: Strong central authority vs local system autonomy
 // Relations with the Western countries (France, UK).
 Q.west_relation = 0;
 // Relations with the Eastern countries (Poland, Czechoslovakia)
@@ -423,8 +467,6 @@ Q.rearmament_exposed = 0;
 // reparations vs baseline: young plan is -1.
 Q.reparations = 0;
 Q.reparations_negotiation = 0;
-// nationalization_progress is part of the left economic plan.
-Q.nationalization_progress = 0;
 // socializations is part of the economic democracy card.
 Q.socializations = 0;
 Q.nationalize_budget = 4;
@@ -462,7 +504,7 @@ Q.timers = ['advisor_action', 'confronting_nazis', 'crisis_program',
             'inter_party_relationships', 'international_relations',
             'iron_front', 'media', 'enemies',
             'party_organizations', 'rally', 'reichsbanner',
-            'shuffle_leadership', 'streetfighting', 'peoples_party',
+            'shuffle_leadership', 'streetfighting',
             'party_disunity',
             // govt
             'agricultural_policy', 'domestic_enemies', 'fiscal_policy',
@@ -495,16 +537,15 @@ Q.rally_timer = 0;
 Q.reichsbanner_timer = 0;
 Q.shuffle_leadership_timer = 0;
 Q.streetfighting_timer = 0;
-Q.peoples_party_timer = 0;
 // n_elections is the number of elections that have happened since the start of the game.
 Q.n_elections = 0;
 // number of elections without a clear majority.
 Q.no_majority_elections = 0;
 // elections are not on a timer, but rather there is an indicator for whether you're in an electoral cycle.
 Q.in_election = 1;
-Q.next_election_year = 1928;
-Q.next_election_month = 5;
-Q.next_election_time = 5;
+Q.next_election_year_bby = 36; // 36 BBY = 7941 C.R.C.
+Q.next_election_quarter = 1; // 0=000, 1=250, 2=500, 3=750
+Q.next_election_time = 2; // 2 quarters from start
 // government affairs timers
 Q.agricultural_policy_timer = 0;
 Q.domestic_enemies_timer = 0;
@@ -536,8 +577,6 @@ Q.march_on_berlin_timer = 0;
 Q.wels_advisor = 1; // Otto Wels
 Q.muller_advisor = 1; // Hermann Müller
 Q.muller_dead = 0;
-// okay I know Arthur Crispien was a leader irl but i couldn't find much interesting about him...
-Q.crispien_advisor = 0; // Arthur Crispien
 Q.hilferding_advisor = 1; // Rudolf Hilferding
 
 // left advisors
@@ -577,9 +616,9 @@ Q.stampfer_advisor = 0; // Friedrich Stampfer
 set-bg: img/map_2.jpg
 new-page: true
 
-> *"Such a general development cannot be attributed to the false tactics of any single party or to the mistakes of individual leaders. On the contrary, the conduct of individual leaders is determined largely by the sentiments of the people as a whole. It would be erroneous, however, to regard the sentiments of the moment as reflecting the natural make-up and character of the people. They are merely the consequence of the special circumstances which have brought about this profound degradation of the entire nation."*
+> *"Too late? For what, the Republic to fall? It already has and you just can't see it. There is no justice, no law, no order but the one that will replace it. The time of the Jedi has passed. They cannot defeat Sidious."*
 
- - Karl Kautsky, *Hitlerism and Social Democracy*, 1934
+ - Maul
 
 This is a game of alternate history. While historical accuracy is a major concern, keep in mind that this is a *game*, and that any divergence from actual events will necessarily have to involve some element of make-believe. Nevertheless, please let the author know if there are any glaring mistakes.
 

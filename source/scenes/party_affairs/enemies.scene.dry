@@ -1,46 +1,52 @@
-title: Choosing Our Enemies
+title: Choosing Our Opposition
 new-page: true
-view-if: year <= 1930 and enemies_timer <= 0
-on-arrival: month_actions += 1; enemies_timer = 18
+view-if: year_bby >= 35 and enemies_timer <= 0
+on-arrival: quarter_actions += 1; enemies_timer = 18
 max-visits: 3
 is-card: true
 card-image: img/poster_1.png
 tags: party_affairs
 
-= Choosing our enemies
+= Choosing our opposition
 
-In our media and campaign materials, who should we consider as our main opponents?
+In our holonet broadcasts and political messaging, which factions should we identify as our primary political opposition?
 
-[? if enemies != 0 : Previously, we had considered the [+ enemies +] as our prior enemies. Is a change of direction necessary? ?]
+[? if enemies != 0 : Previously, we had focused our opposition on the [+ enemies +]. Should we shift our political strategy? ?]
 
-- @anti_dem: The anti-democratic parties of the far right and left - the KPD, NSDAP, and DNVP.
-- @far_right: The far right - the NSDAP and DNVP.
-- @nsdap: The NSDAP alone.
-- @kpd: The KPD.
-- @bourgeois: The bourgeois parties - the Center and DVP.
+- @extremists: The extremist factions - COMPOR and separatist movements threatening Republic unity.
+- @corporates: The Corporate coalition and their mega-corporation allies.
+- @compor: COMPOR alone - the human-supremacist faction.
+- @separatists: Separatist movements in the Outer Rim.
+- @militarists: The Militarists seeking to militarize the Republic.
+- @centralists: The pro-centralization factions - Core Coalition and Nobles.
 - @easy_discard
 
-@anti_dem
-on-arrival: enemies = "anti-democratic parties"; center_strength += 5; reformist_strength += 5; left_dissent += 5; workers_kpd -= 2; workers_nsdap -= 2; workers_dnvp -= 2; kpd_relation -= 10
+@extremists
+on-arrival: enemies = "extremist factions"; center_strength += 5; reformist_strength += 5; populist_dissent += 5; traditionalists_compor -= 2; displaced_populations_compor -= 2; separatism -= 1; compor_relation -= 10
 
-Attacking the far right and left is popular among all but the left wing of our party, who would prefer to be fighting the bourgeois parties. This might also hamper our ability to reconcile with the KPD in the future.
+Opposing extremist factions appeals to moderate Yellows who support Republic unity, though our populist wing prefers fighting corporate interests. This stance strengthens our coalition with the Nobles and Core Coalition.
 
-@far_right
-on-arrival: enemies = "far right"; left_strength += 5; left_dissent -= 5; workers_nsdap -= 3; workers_dnvp -= 3;
+@corporates
+on-arrival: enemies = "corporate coalition"; populist_strength += 5; populist_dissent -= 5; merchants_corporates -= 3; core_elites_corporates -= 3; anti_corporate += 1;
 
-Attacking the far right is popular among the entire party, although the left considers the bourgeois parties to be just as dangerous, while the right is critical of our lack of response to the KPD. Our bourgeois coalition partners are also skeptical of our lack of commitment to anti-communism.
+Attacking corporate interests aligns with our core anti-corporate principles and energizes our base. However, this may complicate relations with merchant guilds and some of our coalition partners who have business ties.
 
-@nsdap
-on-arrival: enemies = "NSDAP"; neorevisionist_strength += 5; nazi_urgency += 1; workers_nsdap -= 4;
+@compor
+on-arrival: enemies = "COMPOR"; winduist_strength += 5; xenophobia_urgency += 1; traditionalists_compor -= 4; alien_rights += 1;
 
-[? if nazi_urgency == 0 or nsdap_r < 10 : The NSDAP is a tiny party right now, with more bark than bite. Many in our party are questioning our choices. ?][? if nazi_urgency > 0 and nsdap_r >= 10 : The Nazis are the most urgent problem for us to deal with. ?]
+[? if xenophobia_urgency == 0 or compor_r < 5 : COMPOR is a small faction right now, but their xenophobic rhetoric is concerning. Many question if they warrant this focus. ?][? if xenophobia_urgency > 0 and compor_r >= 5 : COMPOR's human-supremacist agenda poses a real threat to Republic diversity and alien rights. ?]
 
-@kpd
-on-arrival: enemies = "KPD"; reformist_strength += 5; left_dissent += 8; reformist_dissent -= 5; kpd_relation -= 15; dvp_relation += 5; z_relation += 5; workers_kpd -= 4;
+@separatists
+on-arrival: enemies = "separatist movements"; reformist_strength += 5; populist_dissent += 8; reformist_dissent -= 5; separatism -= 2; rim_pioneers_yellows -= 4; rights_liberties_relation -= 10; core_coalition_relation += 5; nobles_relation += 5;
 
-Attacking the KPD is supported by all but the most left-wing socialists, and wins us some measure of approval among the bourgeois parties. However, If we are to reconcile with the KPD, this may not be the best choice.
+Opposing separatist movements strengthens Republic unity and appeals to loyalist factions, but alienates Rim world supporters who may have legitimate grievances about centralized governance.
 
-@bourgeois
-on-arrival: enemies = "bourgeois parties"; left_strength += 8; left_dissent -= 5; dvp_relation -= 5; z_relation -= 5; kpd_relation += 5; reformist_dissent += 8; workers_z -= 3; coalition_dissent += 1
+@militarists
+on-arrival: enemies = "militarists"; populist_strength += 5; populist_dissent += 8; reformist_dissent -= 5; militarists_relation -= 15; nobles_relation += 5; core_coalition_relation += 5; displaced_populations_militarists -= 4; pacifism += 1;
 
-Our anti-bourgeois rhetoric is popular among the left, but may make it harder to build the coalitions that are necessary for government in the future.
+@centralists
+on-arrival: enemies = "centralist factions"; populist_strength += 8; populist_dissent -= 5; core_coalition_relation -= 5; nobles_relation -= 5; rights_liberties_relation += 5; reformist_dissent += 8; bureaucrats_core_coalition -= 3; coalition_dissent += 1; decentralization += 1;
+
+Opposing militarization appeals to our pacifist wing and aligns with Jedi philosophy of peaceful resolution. However, this stance may alienate security-minded citizens and those who see military preparation as necessary for Republic defense.
+
+Opposing centralization appeals to our decentralist wing and may attract Rim world support. However, this rhetoric strains our current coalition with the Core Coalition and Nobles, potentially destabilizing the government.

@@ -99,13 +99,15 @@ if (Q.dissent < 0) {
 }
 
 // 1. update dates
-if (Q.month_actions >= 1) {
+if (Q.quarter_actions >= 1) {
     Q.time += 1;
-    Q.month_actions = 0;
-    Q.month += 1;
-    if (Q.month >= 13) {
-        Q.month = 1;
-        Q.year += 1;
+    Q.quarter_actions = 0;
+    Q.quarter += 1;
+    if (Q.quarter >= 4) {
+        Q.quarter = 0;
+        Q.year_bby -= 1;
+        // update display year: 7977 - BBY
+        Q.year_display = 7977 - Q.year_bby;
         if (Q.historical_mode) {
             Q.resources += 2;
         }
@@ -117,12 +119,12 @@ if (Q.month_actions >= 1) {
         }
     }
     // append to historical party support records
-    var party_support_results = {'date': new Date(Q.year, Q.month - 1)};
+    var party_support_results = {'date': new Date(Q.year_display, Q.quarter * 3)};
     for (var party of Q.parties) {
         party_support_results[party] = Q[party + '_normalized']*100;
     }
     Q.party_support_records.push(party_support_results);
-    Q.economic_records.push({'date': new Date(Q.year, Q.month - 1),
+    Q.economic_records.push({'date': new Date(Q.year_display, Q.quarter * 3),
                              'inflation': Q.inflation,
                              'unemployment': Q.unemployed});
     // change economic stats...
